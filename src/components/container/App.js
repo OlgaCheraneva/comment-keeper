@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import {CommentForm} from './components/CommentForm';
-import {CommentList} from './components/CommentList';
+import {CommentForm} from '../presentational/CommentForm';
+import {CommentList} from '../presentational/CommentList';
 
 export class App extends Component {
     state = {comments: [], loading: true};
