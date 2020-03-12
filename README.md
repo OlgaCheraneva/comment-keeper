@@ -1,3 +1,3 @@
 # comment-keeper
 
-Simple React App
+Simple React Redux App

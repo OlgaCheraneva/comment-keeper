@@ -1,5 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../src/components/container/App';
+import {createStore} from 'redux';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import App from './containers/App';
+import comments from './reducers';
+import {loadComments, saveComments} from './localStorage';
+
+const store = createStore(comments, loadComments());
+
+store.subscribe(() => {
+    saveComments(store.getState());
+});
+
+ReactDOM.render(<App store={store} />, document.getElementById('root'));
