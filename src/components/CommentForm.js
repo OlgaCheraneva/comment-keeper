@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export class CommentForm extends Component {
+class CommentForm extends Component {
     state = {author: '', text: ''};
 
     onChange = (e) => {
@@ -12,7 +12,7 @@ export class CommentForm extends Component {
 
         const time = Date.now();
         const {author, text} = this.state;
-        const comment = {time, author, text};
+        const comment = {id: time, time, author, text};
 
         this.props.saveComment(comment);
         this.setState({author: '', text: ''});

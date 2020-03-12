@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import {CommentForm} from '../presentational/CommentForm';
-import {CommentList} from '../presentational/CommentList';
+import CommentForm from '../components/CommentForm';
+import CommentList from '../components/CommentList';
 
-export class App extends Component {
+export default class App extends Component {
     state = {comments: [], loading: true};
 
     componentDidMount() {
@@ -18,23 +18,13 @@ export class App extends Component {
     }
 
     saveComment = (comment) => {
-        const {comments} = this.state;
-        comments.push(comment);
-
-        this.updateComments(comments);
+        this.updateComments([...this.state.comments, comment]);
     };
 
-    deleteComment = (comment) => {
-        let {comments} = this.state;
-        comments = comments.filter(({time, author, text}) => {
-            return (
-                comment.time !== time ||
-                comment.author !== author ||
-                comment.text !== text
-            );
-        });
+    deleteComment = (id) => {
+        const {comments} = this.state;
 
-        this.updateComments(comments);
+        this.updateComments(comments.filter((comment) => id !== comment.id));
     };
 
     updateComments = (comments) => {
@@ -65,5 +55,3 @@ export class App extends Component {
         );
     }
 }
-
-export default App;

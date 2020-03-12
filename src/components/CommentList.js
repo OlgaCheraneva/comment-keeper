@@ -1,19 +1,19 @@
 import React from 'react';
 
-import {CommentItem} from './CommentItem';
+import CommentItem from './CommentItem';
 
-export const CommentList = ({comments, deleteComment}) => {
-    if (comments.length === 0) {
+const CommentList = ({comments, deleteComment}) => {
+    if (!comments.length) {
         return <p>Список комментариев пуст</p>;
     }
 
     return (
         <ul>
-            {comments.map((comment, i) => {
+            {comments.map((comment) => {
                 return (
                     <li>
                         <CommentItem
-                            key={i}
+                            key={comment.id}
                             comment={comment}
                             deleteComment={deleteComment}
                         />
@@ -23,3 +23,5 @@ export const CommentList = ({comments, deleteComment}) => {
         </ul>
     );
 };
+
+export default CommentList;
