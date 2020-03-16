@@ -1,6 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
-const CommentItem = ({comment, deleteComment}) => {
+import CommentContext from '../context/commentContext';
+
+const CommentItem = ({comment}) => {
+    const commentContext = useContext(CommentContext);
+    const {deleteComment} = commentContext;
     const {id, time, author, text} = comment;
 
     return (
