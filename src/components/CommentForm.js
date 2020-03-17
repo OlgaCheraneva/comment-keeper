@@ -6,26 +6,22 @@ const CommentForm = () => {
     const commentContext = useContext(CommentContext);
     const {addComment} = commentContext;
 
-    const [author, setAuthor] = useState('');
-    const [text, setText] = useState('');
+    const initialState = {author: '', text: ''};
+    const [state, setState] = useState(initialState);
 
-    const onAuthorChange = (e) => {
-        setAuthor(e.target.value);
-    };
-
-    const onTextChange = (e) => {
-        setText(e.target.value);
+    const onChange = (e) => {
+        setState({...state, [e.target.name]: e.target.value});
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
 
         const time = Date.now();
+        const {author, text} = state;
         const comment = {id: time, time, author, text};
 
         addComment(comment);
-        setAuthor('');
-        setText('');
+        setState(initialState);
     };
 
     return (
@@ -33,8 +29,8 @@ const CommentForm = () => {
             <input
                 type="text"
                 name="author"
-                value={author}
-                onChange={onAuthorChange}
+                value={state.author}
+                onChange={onChange}
                 placeholder="Автор"
                 required
             />
@@ -42,8 +38,8 @@ const CommentForm = () => {
                 name="text"
                 cols="30"
                 rows="10"
-                value={text}
-                onChange={onTextChange}
+                value={state.text}
+                onChange={onChange}
                 placeholder="Комментарий"
                 required
             />
