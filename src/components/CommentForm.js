@@ -11,7 +11,9 @@ export const CommentForm = ({addComment}) => {
 
         if (!author || !text) return;
 
-        addComment({author, text});
+        const time = new Date();
+
+        addComment({id: time, time, author, text});
 
         authorInputElem.value = '';
         textInputElem.value = '';
