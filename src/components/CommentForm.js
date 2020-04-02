@@ -1,13 +1,13 @@
 import React from 'react';
 
 export const CommentForm = ({addComment}) => {
-    let authorInputElem, textInputElem;
+    let authorInputRef, textInputRef, formRef;
 
     const onSubmit = (e) => {
         e.preventDefault();
 
-        const author = authorInputElem.value.trim();
-        const text = textInputElem.value.trim();
+        const author = authorInputRef.value.trim();
+        const text = textInputRef.value.trim();
 
         if (!author || !text) return;
 
@@ -15,16 +15,15 @@ export const CommentForm = ({addComment}) => {
 
         addComment({id: time, time, author, text});
 
-        authorInputElem.value = '';
-        textInputElem.value = '';
+        formRef.reset();
     };
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} ref={(node) => (formRef = node)}>
             <input
                 type="text"
                 name="author"
-                ref={(node) => (authorInputElem = node)}
+                ref={(node) => (authorInputRef = node)}
                 placeholder="Автор"
                 required
             />
@@ -32,7 +31,7 @@ export const CommentForm = ({addComment}) => {
                 name="text"
                 cols="30"
                 rows="10"
-                ref={(node) => (textInputElem = node)}
+                ref={(node) => (textInputRef = node)}
                 placeholder="Комментарий"
                 required
             />
