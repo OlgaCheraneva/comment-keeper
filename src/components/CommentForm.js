@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export const CommentForm = ({addComment}) => {
+const CommentForm = ({addComment}) => {
     let authorInputRef, textInputRef, formRef;
 
     const onSubmit = (e) => {
@@ -43,3 +44,9 @@ export const CommentForm = ({addComment}) => {
         </form>
     );
 };
+
+CommentForm.propTypes = {
+    addComment: PropTypes.func.isRequired
+};
+
+export default CommentForm;

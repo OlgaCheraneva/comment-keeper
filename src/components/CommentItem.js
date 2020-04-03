@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export const CommentItem = ({comment, deleteComment}) => {
+const CommentItem = ({comment, deleteComment}) => {
     const {id, time, author, text} = comment;
 
     return (
@@ -21,3 +22,10 @@ export const CommentItem = ({comment, deleteComment}) => {
         </div>
     );
 };
+
+CommentItem.propTypes = {
+    comment: PropTypes.object.isRequired,
+    deleteComment: PropTypes.func.isRequired
+};
+
+export default CommentItem;
